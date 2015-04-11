@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		062504521AD950F400A4D448 /* WTForecastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 062504511AD950F400A4D448 /* WTForecastViewController.m */; };
 		06463EB21AD8FE6B0052D674 /* WeatherTodayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06463EB11AD8FE6B0052D674 /* WeatherTodayTests.m */; };
 		06463EC61AD919650052D674 /* WTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06463EC51AD919650052D674 /* WTViewController.m */; };
 		06463ECC1AD919710052D674 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06463EC71AD919710052D674 /* Images.xcassets */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		062504501AD950F400A4D448 /* WTForecastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTForecastViewController.h; path = WeatherToday/Controllers/WTForecastViewController.h; sourceTree = "<group>"; };
+		062504511AD950F400A4D448 /* WTForecastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTForecastViewController.m; path = WeatherToday/Controllers/WTForecastViewController.m; sourceTree = "<group>"; };
 		06463E8F1AD8FE660052D674 /* WeatherToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06463EAB1AD8FE6B0052D674 /* WeatherTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06463EB01AD8FE6B0052D674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				06463EC51AD919650052D674 /* WTViewController.m */,
 				06463ED91AD91AF20052D674 /* WTCitiesViewController.h */,
 				06463EDA1AD91AF20052D674 /* WTCitiesViewController.m */,
+				062504501AD950F400A4D448 /* WTForecastViewController.h */,
+				062504511AD950F400A4D448 /* WTForecastViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				06463EDE1AD91EF50052D674 /* WTManager.m in Sources */,
 				06463ECF1AD919710052D674 /* WeatherToday.xcdatamodeld in Sources */,
 				06463ED61AD9197C0052D674 /* main.m in Sources */,
+				062504521AD950F400A4D448 /* WTForecastViewController.m in Sources */,
 				06463ED41AD9197C0052D674 /* WTAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
