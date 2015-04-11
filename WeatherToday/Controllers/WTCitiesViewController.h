@@ -12,6 +12,7 @@
 
 @interface WTCitiesViewController : UIViewController
 
+@property (nonatomic) NSManagedObjectContext *managedContext;
 @property (nonatomic, weak) id<CitiesDelegate> delegate;
 
 @end

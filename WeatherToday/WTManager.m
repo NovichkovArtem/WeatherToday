@@ -65,7 +65,6 @@ NSString *const kOpenWeatherAPIKey = @"a4e963e76122311fd7fd4f6bbd95362f";
         main[@"temp_max"] = [self convertTemp:main[@"temp_max"]];
         
         dic[@"main"] = [main copy];
-        
     }
     
     NSMutableDictionary *temp = [[dic objectForKey:@"temp"] mutableCopy];
@@ -80,24 +79,19 @@ NSString *const kOpenWeatherAPIKey = @"a4e963e76122311fd7fd4f6bbd95362f";
         dic[@"temp"] = [temp copy];
     }
     
-    
     NSMutableDictionary *sys = [[dic objectForKey:@"sys"] mutableCopy];
     if (sys) {
-        
         sys[@"sunrise"] = [self convertToDate: sys[@"sunrise"]];
         sys[@"sunset"] = [self convertToDate: sys[@"sunset"]];
         
         dic[@"sys"] = [sys copy];
     }
     
-    
     NSMutableArray *list = [[dic objectForKey:@"list"] mutableCopy];
     if (list) {
-        
         for (int i = 0; i < list.count; i++) {
             [list replaceObjectAtIndex:i withObject:[self convertResult: list[i]]];
         }
-        
         dic[@"list"] = [list copy];
     }
     

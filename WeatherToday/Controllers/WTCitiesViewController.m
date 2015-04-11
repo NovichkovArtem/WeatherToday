@@ -7,6 +7,7 @@
 //
 
 #import "WTCitiesViewController.h"
+#import "WTAppDelegate.h"
 
 @interface WTCitiesViewController()
 <
@@ -24,12 +25,28 @@ UIAlertViewDelegate
 
 - (void)viewDidLoad
 {
-    self.cities = [NSMutableArray arrayWithObjects:@"Moscow", @"Petersburg", nil];
+    [self loadCitiesList];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                     target:self
                                     action:@selector(AddCity:)];
     self.navigationItem.leftBarButtonItem = addButton;
+}
+
+- (void)loadCitiesList
+{
+    self.cities = [@[] mutableCopy];
+    WTAppDelegate *appDelegate = (WTAppDelegate *)[UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *request = [NSFetchRequest new];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"City"
+                                              inManagedObjectContext:context];
+    [request setEntity:entity];
+    NSArray *array = [context executeFetchRequest:request
+                                            error:nil];
+    for (NSManagedObject *object in array) {
+        [self.cities addObject:[object valueForKey:@"name"]];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -67,8 +84,18 @@ UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    WTAppDelegate *appDelegate = (WTAppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *cityName = [[alertView textFieldAtIndex:0] text];
-    [self.cities addObject:cityName];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:@"City"
+                                                            inManagedObjectContext:context];
+    [object setValue:cityName
+              forKey:@"name"];
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    [self loadCitiesList];
     [self.tableView reloadData];
 }
 

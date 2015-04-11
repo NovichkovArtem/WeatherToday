@@ -12,7 +12,7 @@
 		06463ECC1AD919710052D674 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06463EC71AD919710052D674 /* Images.xcassets */; };
 		06463ECD1AD919710052D674 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06463EC81AD919710052D674 /* LaunchScreen.xib */; };
 		06463ECF1AD919710052D674 /* WeatherToday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06463ECA1AD919710052D674 /* WeatherToday.xcdatamodeld */; };
-		06463ED41AD9197C0052D674 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06463ED11AD9197C0052D674 /* AppDelegate.m */; };
+		06463ED41AD9197C0052D674 /* WTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06463ED11AD9197C0052D674 /* WTAppDelegate.m */; };
 		06463ED61AD9197C0052D674 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06463ED31AD9197C0052D674 /* main.m */; };
 		06463ED71AD919BD0052D674 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06463EC91AD919710052D674 /* Main.storyboard */; };
 		06463EDB1AD91AF20052D674 /* WTCitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06463EDA1AD91AF20052D674 /* WTCitiesViewController.m */; };
@@ -41,7 +41,7 @@
 		06463EC91AD919710052D674 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = WeatherToday/Resources/Main.storyboard; sourceTree = "<group>"; };
 		06463ECB1AD919710052D674 /* WeatherToday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherToday.xcdatamodel; sourceTree = "<group>"; };
 		06463ED01AD9197C0052D674 /* WTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTAppDelegate.h; path = WeatherToday/Application/WTAppDelegate.h; sourceTree = "<group>"; };
-		06463ED11AD9197C0052D674 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = WeatherToday/Application/AppDelegate.m; sourceTree = "<group>"; };
+		06463ED11AD9197C0052D674 /* WTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTAppDelegate.m; path = WeatherToday/Application/WTAppDelegate.m; sourceTree = "<group>"; };
 		06463ED21AD9197C0052D674 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = WeatherToday/Application/Info.plist; sourceTree = "<group>"; };
 		06463ED31AD9197C0052D674 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WeatherToday/Application/main.m; sourceTree = "<group>"; };
 		06463ED91AD91AF20052D674 /* WTCitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTCitiesViewController.h; path = WeatherToday/Controllers/WTCitiesViewController.h; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				06463ED01AD9197C0052D674 /* WTAppDelegate.h */,
-				06463ED11AD9197C0052D674 /* AppDelegate.m */,
+				06463ED11AD9197C0052D674 /* WTAppDelegate.m */,
 				06463ED21AD9197C0052D674 /* Info.plist */,
 				06463ED31AD9197C0052D674 /* main.m */,
 			);
@@ -246,7 +246,7 @@
 				06463EDE1AD91EF50052D674 /* WTManager.m in Sources */,
 				06463ECF1AD919710052D674 /* WeatherToday.xcdatamodeld in Sources */,
 				06463ED61AD9197C0052D674 /* main.m in Sources */,
-				06463ED41AD9197C0052D674 /* AppDelegate.m in Sources */,
+				06463ED41AD9197C0052D674 /* WTAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
