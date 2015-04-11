@@ -25,15 +25,28 @@ UIAlertViewDelegate
 
 - (void)viewDidLoad
 {
-    [self loadCitiesList];
+    [self loadCityList];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                     target:self
                                     action:@selector(AddCity:)];
+    addButton.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = addButton;
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close"
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(closeCityList)];
+    closeButton.tintColor = [UIColor blackColor];
+    self.navigationItem.rightBarButtonItem = closeButton;
 }
 
-- (void)loadCitiesList
+- (void)closeCityList
+{
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
+
+- (void)loadCityList
 {
     self.cities = [@[] mutableCopy];
     WTAppDelegate *appDelegate = (WTAppDelegate *)[UIApplication sharedApplication].delegate;
@@ -47,6 +60,17 @@ UIAlertViewDelegate
     for (NSManagedObject *object in array) {
         [self.cities addObject:[object valueForKey:@"name"]];
     }
+}
+
+- (void)AddCity:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter city name", nil)
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Add city"
+                                              otherButtonTitles:nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
 }
 
 #pragma mark - UITableViewDataSource
@@ -69,17 +93,6 @@ UIAlertViewDelegate
     return cell;
 }
 
-- (void)AddCity:(id)sender
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter city name", nil)
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Add city"
-                                              otherButtonTitles:nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView show];
-}
-
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -95,7 +108,7 @@ UIAlertViewDelegate
     if (![context save:&error]) {
         NSLog(@"%@", [error localizedDescription]);
     }
-    [self loadCitiesList];
+    [self loadCityList];
     [self.tableView reloadData];
 }
 
