@@ -10,6 +10,7 @@
 
 @interface WTManager : NSObject
 
-+ (void)downloadDataForCity:(NSString *)city withCompletionHandler:(void (^)(NSDictionary *result))completionHandler;
++ (void)downloadCurrentWeatherForCity:(NSString *)city withCompletionHandler:(void (^)(NSDictionary *result))completionHandler;
++ (void)downloadForecastForCity:(NSString *)city withCompletionHandler:(void (^)(NSDictionary *result))completionHandler;
 
 @end

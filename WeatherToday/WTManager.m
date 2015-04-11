@@ -12,12 +12,23 @@ NSString *const kOpenWeatherAPIKey = @"a4e963e76122311fd7fd4f6bbd95362f";
 
 @implementation WTManager
 
-+ (void)downloadDataForCity:(NSString *)city withCompletionHandler:(void (^)(NSDictionary *result))completionHandler
++ (void)downloadCurrentWeatherForCity:(NSString *)city withCompletionHandler:(void (^)(NSDictionary *result))completionHandler
 {
     NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?q=%@&APPID=%@", city, kOpenWeatherAPIKey];
-    ;
     NSURL *url = [NSURL URLWithString:URLString];
-    
+    [self downloadDataForURL:url
+       withCompletionHandler:completionHandler];
+}
++ (void)downloadForecastForCity:(NSString *)city withCompletionHandler:(void (^)(NSDictionary *result))completionHandler
+{
+    NSString *URLString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/forecast?q=%@&APPID=%@", city, kOpenWeatherAPIKey];
+    NSURL *url = [NSURL URLWithString:URLString];
+    [self downloadDataForURL:url
+       withCompletionHandler:completionHandler];
+}
+
++ (void)downloadDataForURL:(NSURL *)url withCompletionHandler:(void (^)(NSDictionary *result))completionHandler
+{
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -27,8 +38,8 @@ NSString *const kOpenWeatherAPIKey = @"a4e963e76122311fd7fd4f6bbd95362f";
         else {
             NSError *error = nil;
             NSDictionary *res = [NSJSONSerialization JSONObjectWithData:data
-                                                         options:kNilOptions
-                                                           error:&error];
+                                                                options:kNilOptions
+                                                                  error:&error];
             res = [self convertResult:res];
             if (error) {
                 NSLog(@"%@", [error localizedDescription]);
@@ -95,9 +106,9 @@ NSString *const kOpenWeatherAPIKey = @"a4e963e76122311fd7fd4f6bbd95362f";
     return [dic copy];
 }
 
-+ (NSNumber *)convertTemp:(NSNumber *)temp
++ (NSString *)convertTemp:(NSNumber *)temp
 {
-        return @(temp.floatValue - 273.15);
+    return [NSString stringWithFormat:@"%.f", temp.floatValue - 273.15];
 }
 
 + (NSDate *)convertToDate:(NSNumber *)num
