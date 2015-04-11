@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A559F90D-6A9B-4566-BBF7-5A4C2384E7D0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WeatherToday</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>575081F1EF038F4E5E3865E942437DFCB0348652</key>
+		<string>https://github.com/NovichkovArtem/WeatherToday</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>WeatherToday.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>575081F1EF038F4E5E3865E942437DFCB0348652</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/NovichkovArtem/WeatherToday</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>575081F1EF038F4E5E3865E942437DFCB0348652</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>575081F1EF038F4E5E3865E942437DFCB0348652</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WeatherToday</string>
+		</dict>
+	</array>
+</dict>
+</plist>
