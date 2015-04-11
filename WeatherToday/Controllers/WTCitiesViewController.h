@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CitiesDelegate;
+
 @interface WTCitiesViewController : UIViewController
+
+@property (nonatomic, weak) id<CitiesDelegate> delegate;
+
+@end
+
+@protocol CitiesDelegate <NSObject>
+
+- (void)currentCityChanged:(NSString *)city;
 
 @end

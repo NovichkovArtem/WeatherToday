@@ -8,7 +8,12 @@
 
 #import "WTCitiesViewController.h"
 
-@interface WTCitiesViewController() <UITableViewDelegate, UITableViewDataSource>
+@interface WTCitiesViewController()
+<
+UITableViewDelegate,
+UITableViewDataSource,
+UIAlertViewDelegate
+>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSMutableArray *cities;
@@ -20,6 +25,11 @@
 - (void)viewDidLoad
 {
     self.cities = [NSMutableArray arrayWithObjects:@"Moscow", @"Petersburg", nil];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                    target:self
+                                    action:@selector(AddCity:)];
+    self.navigationItem.leftBarButtonItem = addButton;
 }
 
 #pragma mark - UITableViewDataSource
@@ -42,10 +52,33 @@
     return cell;
 }
 
+- (void)AddCity:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter city name", nil)
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Add city"
+                                              otherButtonTitles:nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *cityName = [[alertView textFieldAtIndex:0] text];
+    [self.cities addObject:cityName];
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self.delegate  respondsToSelector:@selector(currentCityChanged:)]) {
+        [self.delegate currentCityChanged:self.cities[indexPath.row]];
+    }
     [self dismissViewControllerAnimated:YES
                              completion:nil];
 }
