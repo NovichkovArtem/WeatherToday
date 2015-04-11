@@ -7,9 +7,13 @@
 //
 
 #import "WTViewController.h"
+#import "WTCitiesViewController.h"
 #import "WTManager.h"
 
-@interface WTViewController ()
+@interface WTViewController () <CitiesDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *degreeLabel;
 
 @end
 
@@ -17,15 +21,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getWeatherInfo];
+    [self getWeatherInfoForCity:@"Moscow"];
 }
 
-- (void)getWeatherInfo
+- (void)getWeatherInfoForCity:(NSString *)city
 {
-    [WTManager downloadDataForCity:@"Moscow" withCompletionHandler:^(NSDictionary *result) {
-//        NSLog(@"%@", result);
-        NSLog(@"%@", result[@"main"]);
+    [WTManager downloadCurrentWeatherForCity:city withCompletionHandler:^(NSDictionary *result) {
+        self.infoLabel.text = result[@"name"];
+        NSDictionary *tempDict = result[@"main"];
+        self.degreeLabel.text = tempDict[@"temp"];
     }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:NSStringFromClass([WTCitiesViewController class])]) {
+        UINavigationController *descVC = (UINavigationController *)segue.destinationViewController;
+        WTCitiesViewController *citiesVC = descVC.viewControllers[0];
+        citiesVC.delegate = self;
+    }
+}
+
+#pragma mark - CitiesDelegate
+
+- (void)currentCityChanged:(NSString *)city
+{
+    [self getWeatherInfoForCity:city];
 }
 
 @end
