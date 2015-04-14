@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Weather Today-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="WTViewController" sceneMemberID="viewController">
@@ -19,12 +19,14 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 degrees" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYa-LH-cfB">
                                 <rect key="frame" x="262" y="289" width="76" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4a-Z4-30g">
                                 <rect key="frame" x="545" y="550" width="39" height="30"/>
-                                <state key="normal" title="Cities"/>
+                                <state key="normal" title="Cities">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <segue destination="RjS-3m-LT3" kind="presentation" identifier="WTCitiesViewController" id="8cO-eu-js6"/>
                                 </connections>
@@ -32,21 +34,32 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1h-3F-OBG">
                                 <rect key="frame" x="269" y="86" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkW-SF-dwZ">
+                                <rect key="frame" x="16" y="550" width="60" height="30"/>
+                                <state key="normal" title="Forecast">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="SrB-e1-jRP" kind="show" identifier="WTForecastViewController" id="hyt-v6-kEs"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="sYa-LH-cfB" secondAttribute="centerY" id="BEQ-SG-N0U"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dkW-SF-dwZ" secondAttribute="bottom" constant="20" id="QUO-bV-Lgo"/>
                             <constraint firstAttribute="trailing" secondItem="v4a-Z4-30g" secondAttribute="trailing" constant="16" id="UzD-6V-5hs"/>
                             <constraint firstItem="q1h-3F-OBG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="22" id="ZkE-ty-Qke"/>
                             <constraint firstAttribute="centerX" secondItem="q1h-3F-OBG" secondAttribute="centerX" id="b3y-XE-8FZ"/>
                             <constraint firstAttribute="centerX" secondItem="sYa-LH-cfB" secondAttribute="centerX" id="bIW-KF-4as"/>
+                            <constraint firstItem="dkW-SF-dwZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="kAV-Hp-GNa"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="v4a-Z4-30g" secondAttribute="bottom" constant="20" id="plX-5g-FlJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cnZ-Zu-mqa"/>
+                    <navigationItem key="navigationItem" title="Weather Today" id="cnZ-Zu-mqa"/>
                     <connections>
                         <outlet property="degreeLabel" destination="sYa-LH-cfB" id="4tx-UG-YZk"/>
                         <outlet property="infoLabel" destination="q1h-3F-OBG" id="Fx8-yW-yZ0"/>
@@ -56,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="2084" y="349"/>
         </scene>
-        <!--Cities View Controller-->
+        <!--City List-->
         <scene sceneID="dFh-rM-UAA">
             <objects>
                 <viewController id="Iyf-CD-y5H" customClass="WTCitiesViewController" sceneMemberID="viewController">
@@ -85,9 +98,7 @@
                             <constraint firstItem="pF1-4g-kgY" firstAttribute="top" secondItem="GQE-cb-1wE" secondAttribute="top" id="zOm-tM-AMa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tat-q4-1cN">
-                        <barButtonItem key="rightBarButtonItem" title="Close" id="BxA-Qc-MtZ"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="City List" id="tat-q4-1cN"/>
                     <connections>
                         <outlet property="tableView" destination="pF1-4g-kgY" id="9Vo-gz-6mZ"/>
                     </connections>
@@ -131,6 +142,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lvf-S3-hig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2813" y="349"/>
+        </scene>
+        <!--Forecast View Controller-->
+        <scene sceneID="qzq-W4-O2l">
+            <objects>
+                <viewController id="fXd-hM-oNg" customClass="WTForecastViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A0n-Is-x1j"/>
+                        <viewControllerLayoutGuide type="bottom" id="IOX-sU-BsK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WXg-Ji-3j3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IKm-TV-EVG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fXd-hM-oNg" id="SzZ-Cc-y50"/>
+                                    <outlet property="delegate" destination="fXd-hM-oNg" id="LJy-fS-y8B"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IKm-TV-EVG" firstAttribute="leading" secondItem="WXg-Ji-3j3" secondAttribute="leading" id="5fR-hf-SnC"/>
+                            <constraint firstItem="IOX-sU-BsK" firstAttribute="top" secondItem="IKm-TV-EVG" secondAttribute="bottom" id="GAp-vG-vLF"/>
+                            <constraint firstAttribute="trailing" secondItem="IKm-TV-EVG" secondAttribute="trailing" id="M2m-9V-e9j"/>
+                            <constraint firstItem="IKm-TV-EVG" firstAttribute="top" secondItem="WXg-Ji-3j3" secondAttribute="top" id="a6I-CB-vcW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Sah-hc-IpN"/>
+                    <connections>
+                        <outlet property="tableView" destination="IKm-TV-EVG" id="IFV-I8-HTM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8v-p4-joy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3625" y="1094"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Uoe-iw-DGW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SrB-e1-jRP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QxO-6K-pqZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fXd-hM-oNg" kind="relationship" relationship="rootViewController" id="c2Q-Wd-1NM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ann-go-vqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2813" y="1094"/>
         </scene>
     </scenes>
 </document>

@@ -12,7 +12,7 @@
 @interface WTForecastViewController() <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) NSDictionary *forcastList;
+@property (nonatomic) NSArray *forcastList;
 
 @end
 
@@ -40,11 +40,22 @@
     NSString *cellIdentifier = @"cellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:cellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = self.forcastList[@"main"][@"temp"];
+    NSDictionary *temtDict = self.forcastList[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@° C", temtDict[@"main"][@"temp"]];
+    
+    
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM.dd, HH"];
+    
+    
+    NSString *dateString = [dateFormat stringFromDate:temtDict[@"dt"]];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ hours", dateString];
     return cell;
 }
 

@@ -8,6 +8,7 @@
 
 #import "WTViewController.h"
 #import "WTCitiesViewController.h"
+#import "WTForecastViewController.h"
 #import "WTManager.h"
 
 @interface WTViewController () <CitiesDelegate>
@@ -21,6 +22,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.infoLabel.text = NSLocalizedString(@"Loading", nil);
+    self.degreeLabel.hidden = YES;
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.frame = self.view.bounds;
+    [self.view addSubview:imageView];
+    [imageView.superview sendSubviewToBack:imageView];
     [self getWeatherInfoForCity:@"Moscow"];
 }
 
@@ -29,7 +37,8 @@
     [WTManager downloadCurrentWeatherForCity:city withCompletionHandler:^(NSDictionary *result) {
         self.infoLabel.text = result[@"name"];
         NSDictionary *tempDict = result[@"main"];
-        self.degreeLabel.text = tempDict[@"temp"];
+        self.degreeLabel.hidden = NO;
+        self.degreeLabel.text = [NSString stringWithFormat:@"%@° C", tempDict[@"temp"]];
     }];
 }
 
@@ -40,12 +49,19 @@
         WTCitiesViewController *citiesVC = descVC.viewControllers[0];
         citiesVC.delegate = self;
     }
+    else if ([segue.identifier isEqualToString:NSStringFromClass([WTForecastViewController class])]) {
+        UINavigationController *descVC = (UINavigationController *)segue.destinationViewController;
+        WTForecastViewController *forecastVC = descVC.viewControllers[0];
+        forecastVC.cityName = @"Moscow";
+    }
 }
 
 #pragma mark - CitiesDelegate
 
 - (void)currentCityChanged:(NSString *)city
 {
+    self.infoLabel.text = NSLocalizedString(@"Loading", nil);
+    self.degreeLabel.hidden = YES;
     [self getWeatherInfoForCity:city];
 }
 
